@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <!-- Секция аппендеров -->
+    <Appenders>
+        <!-- Консольный аппендер -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>%d %-5p [%t] %c{1} (%F:%L) - %m%n</Pattern>
+            </PatternLayout>
+        </Console>
+        <!-- Файловый аппендер -->
+        <File name="file" fileName="log/log.log">
+            <PatternLayout>
+                <Pattern>%p %d{d.MM.y} %d{HH:mm:ss} (%C{1}) - %m%n</Pattern>
+            </PatternLayout>
+        </File>
+        <!-- Файловый аппендер -->
+        <File name="file2" fileName="log/log2.log">
+            <PatternLayout>
+                    <Pattern>%p %d{d.MM.y} %d{HH:mm:ss} (%C{1}) - %m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <!-- Секция логгеров -->
+    <Loggers>
+        <Logger name="ru.bstu.it51.hlopov.Lab2" level="debug"/>
+        <Root level="all">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="file" level="debug"/>
+            <AppenderRef ref="file2" level="warn"/>
+        </Root>
+    </Loggers>
+</Configuration>
