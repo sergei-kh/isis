@@ -3,6 +3,7 @@ package ru.bstu.it51.hlopov.helpers.xml;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -16,6 +17,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import ru.bstu.it51.hlopov.Models.Country;
 import ru.bstu.it51.hlopov.helpers.xml.Elements;
 import ru.bstu.it51.hlopov.helpers.xml.Sax;
 
@@ -36,6 +38,7 @@ public class Parser {
 
     public void printAllDocument() {
         Sax SAXParser = new Sax(xml);
+        ArrayList<Country> countries = SAXParser.getData();
     }
 
     public void addItemToDocument() {
