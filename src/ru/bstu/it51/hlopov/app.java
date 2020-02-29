@@ -27,6 +27,10 @@ public class app {
                     Lab4 lr4 = new Lab4();
                     lr4.run();
                     break;
+                case 5:
+                    Lab5 lr5 = new Lab5();
+                    lr5.run();
+                    break;
                 default:
                     break;
             }
