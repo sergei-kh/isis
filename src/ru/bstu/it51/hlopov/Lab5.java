@@ -1,5 +1,5 @@
 package ru.bstu.it51.hlopov;
-import ru.bstu.it51.hlopov.helpers.xml.XmlParser;
+import ru.bstu.it51.hlopov.helpers.xml.Parser;
 
 import java.util.Scanner;
 
@@ -15,7 +15,7 @@ public class Lab5 {
                 case 1:
                     byte cmd = 0;
                     System.out.print("Просмотреть всё = 0\nДобавление = 1\nРедактирование = 2\nУдаление = 3\n");
-                    XmlParser parser = new XmlParser("configLab5.properties");
+                    Parser parser = new Parser("configLab5.properties");
                     System.out.println("Выход = -1");
                     while (cmd != -1) {
                         System.out.print(">> ");
