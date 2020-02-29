@@ -39,6 +39,14 @@ public class Parser {
     public void printAllDocument() {
         Sax SAXParser = new Sax(xml);
         ArrayList<Country> countries = SAXParser.getData();
+        for(Country country : countries) {
+            System.out.printf("id: %d\n",country.getId());
+            System.out.printf("Континент: %s\n",country.getContinent());
+            System.out.printf("Название: %s\n",country.getName());
+            System.out.printf("Площадь: %d\n",country.getArea());
+            System.out.printf("Население: %d\n",country.getPopulation());
+            System.out.printf("Полезные ископаемые: %s\n\n",country.getMinerals());
+        }
     }
 
     public void addItemToDocument() {

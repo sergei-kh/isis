@@ -13,9 +13,11 @@ import ru.bstu.it51.hlopov.Models.Country;
 
 public class Sax {
     protected File xml;
+
     public Sax(File xml) {
         this.xml = xml;
     }
+
     public ArrayList<Country> getData() {
         ArrayList<Country> countries = new ArrayList<Country>();
         try {
@@ -47,9 +49,6 @@ public class Sax {
                     }
                     else if(tag.equalsIgnoreCase("minerals")) {
                         country.setMinerals(new String(ch,start,length));
-                    }
-                    else if(tag.equalsIgnoreCase("country")) {
-                        System.out.print("\n");
                     }
                 }
                 @Override
