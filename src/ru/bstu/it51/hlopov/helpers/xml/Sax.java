@@ -12,13 +12,8 @@ import java.util.ArrayList;
 import ru.bstu.it51.hlopov.Models.Country;
 
 public class Sax {
-    protected File xml;
 
-    public Sax(File xml) {
-        this.xml = xml;
-    }
-
-    public ArrayList<Country> getData() {
+    public static ArrayList<Country> getData(File xml) {
         ArrayList<Country> countries = new ArrayList<Country>();
         try {
             SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -29,7 +24,7 @@ public class Sax {
                 @Override
                 public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
                     if(qName.equalsIgnoreCase("country")) {
-                        country = new Country();
+                        country = new Country(Integer.parseInt(attributes.getValue(0)));
                     }
                     tag = qName;
                 }
@@ -64,5 +59,9 @@ public class Sax {
             e.printStackTrace();
         }
         return countries;
+    }
+    public static int getNextId(File xml) {
+        ArrayList<Country> countries = Sax.getData(xml);
+        return countries.get(countries.size() - 1).getId();
     }
 }

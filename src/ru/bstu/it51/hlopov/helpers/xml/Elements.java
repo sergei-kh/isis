@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class Elements {
     public static Node getCountry(Document doc) {
-
         Scanner in = new Scanner(System.in);
         System.out.print("Введите континент: ");
         String continent = in.next();

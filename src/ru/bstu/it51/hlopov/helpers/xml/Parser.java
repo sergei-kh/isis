@@ -8,7 +8,6 @@ import java.util.Properties;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -17,6 +16,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import org.w3c.dom.Node;
 import ru.bstu.it51.hlopov.Models.Country;
 import ru.bstu.it51.hlopov.helpers.xml.Elements;
 import ru.bstu.it51.hlopov.helpers.xml.Sax;
@@ -37,8 +37,7 @@ public class Parser {
     }
 
     public void printAllDocument() {
-        Sax SAXParser = new Sax(xml);
-        ArrayList<Country> countries = SAXParser.getData();
+        ArrayList<Country> countries = Sax.getData(xml);
         for(Country country : countries) {
             System.out.printf("id: %d\n",country.getId());
             System.out.printf("Континент: %s\n",country.getContinent());
