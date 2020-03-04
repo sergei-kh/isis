@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -53,13 +54,15 @@ public class Parser {
         try {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xml);
-            Element root = document.getDocumentElement();
             document.getDocumentElement().normalize();
+            Element root = document.getDocumentElement();
             root.appendChild(Elements.getCountry(document));
+            document.getDocumentElement().normalize();
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource source = new DOMSource(document);
-            StreamResult file = new StreamResult(xml);
+            StreamResult file = new StreamResult(new File("languageUpdated.xml"));
             transformer.transform(source, file);
             System.out.println("Новая запись успешно создана");
         } catch (Exception e) {

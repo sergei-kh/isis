@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<countries>
+        
+    <country id="1">
+                
+        <continent>Северная Америка</continent>
+                
+        <name>Соединенные Штаты Америки</name>
+                
+        <area>9834000</area>
+                
+        <population>328915700</population>
+                
+        <minerals>Металлы,Алмазы,Бокситы,Барит,Золото</minerals>
+            
+    </country>
+        
+    <country id="2">
+                
+        <continent>Азия</continent>
+                
+        <name>Китай</name>
+                
+        <area>9597000</area>
+                
+        <population>1404328611</population>
+                
+        <minerals>Уголь,Железо,Медь,Алюминий</minerals>
+            
+    </country>
+        
+    <country id="3">
+                
+        <continent>Европа,Азия</continent>
+                
+        <name>Россия</name>
+                
+        <area>17100000</area>
+                
+        <population>146780720</population>
+                
+        <minerals>Нефть,Газ,Уголь,Горючие сланцы</minerals>
+            
+    </country>
+        
+    <country id="4">
+                
+        <continent>Европа</continent>
+                
+        <name>Германия</name>
+                
+        <area>357386</area>
+                
+        <population>81408372</population>
+                
+        <minerals>Барит,Вольфрам,Железные руды,Золото</minerals>
+            
+    </country>
+        
+    <country id="5">
+                
+        <continent>Европа</continent>
+                
+        <name>Франция</name>
+                
+        <area>643801</area>
+                
+        <population>64859773</population>
+                
+        <minerals>Боксит,Барит,Вольфрам,Железные руды,Золото</minerals>
+            
+    </country>
+        
+    <country id="6">
+                
+        <continent>Европа</continent>
+                
+        <name>Италия</name>
+                
+        <area>301338</area>
+                
+        <population>60012396</population>
+                
+        <minerals>Боксит,Барит,Вольфрам,Железные руды,Золото</minerals>
+            
+    </country>
+        
+    <country id="7">
+                
+        <continent>Европа</continent>
+                
+        <name>Италия</name>
+                
+        <area>301338</area>
+                
+        <population>60012396</population>
+                
+        <minerals>Боксит,Барит,Вольфрам,Железные руды,Золото</minerals>
+            
+    </country>
+        
+    <country id="8">
+                
+        <continent>Европа</continent>
+                
+        <name>Польша</name>
+                
+        <area>312679</area>
+                
+        <population>38659927</population>
+                
+        <minerals>Уголь,Газ,Нефть,Металл</minerals>
+            
+    </country>
+        
+    <country id="9">
+                
+        <continent>Европа</continent>
+                
+        <name>Великобритания</name>
+                
+        <area>242495</area>
+                
+        <population>66993318</population>
+                
+        <minerals>Нефть,Газ,Уголь,Железо</minerals>
+            
+    </country>
+        
+    <country id="10">
+                
+        <continent>Океания</continent>
+                
+        <name>Австралия</name>
+                
+        <area>7692000</area>
+                
+        <population>25783256</population>
+                
+        <minerals>Нефть,Газ,Золото,Каменный уголь</minerals>
+            
+    </country>
+    
+    <country>
+        <continent>qwe</continent>
+        <name>qwe</name>
+        <area>qwe</area>
+        <population>qwe</population>
+        <minerals>qwe</minerals>
+    </country>
+</countries>
