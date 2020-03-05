@@ -5,10 +5,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -17,10 +17,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import org.w3c.dom.Node;
 import ru.bstu.it51.hlopov.Models.Country;
-import ru.bstu.it51.hlopov.helpers.xml.Elements;
-import ru.bstu.it51.hlopov.helpers.xml.Sax;
 
 public class Parser {
     protected File xml;
@@ -50,24 +47,25 @@ public class Parser {
     }
 
     public void addItemToDocument() {
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xml);
             document.getDocumentElement().normalize();
             Element root = document.getDocumentElement();
-            root.appendChild(Elements.getCountry(document));
-            document.getDocumentElement().normalize();
+            root.appendChild(Elements.getCountry(document, Sax.getNextId(xml)));
             TransformerFactory transformerFactory = TransformerFactory.newInstance();
             Transformer transformer = transformerFactory.newTransformer();
-            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             DOMSource source = new DOMSource(document);
-            StreamResult file = new StreamResult(new File("languageUpdated.xml"));
+            StreamResult file = new StreamResult(xml);
             transformer.transform(source, file);
             System.out.println("Новая запись успешно создана");
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public void editItemDocument() {
+
     }
 
     public void routingCommands(byte cmd, byte min, byte max) {
@@ -78,6 +76,9 @@ public class Parser {
                     break;
                 case 1:
                     addItemToDocument();
+                    break;
+                case 2:
+                    editItemDocument();
                     break;
             }
         } else {

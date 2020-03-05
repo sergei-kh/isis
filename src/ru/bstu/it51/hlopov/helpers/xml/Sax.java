@@ -62,6 +62,6 @@ public class Sax {
     }
     public static int getNextId(File xml) {
         ArrayList<Country> countries = Sax.getData(xml);
-        return countries.get(countries.size() - 1).getId();
+        return countries.get(countries.size() - 1).getId() + 1;
     }
 }

@@ -7,7 +7,7 @@ import org.w3c.dom.Node;
 import java.util.Scanner;
 
 public class Elements {
-    public static Node getCountry(Document doc) {
+    public static Node getCountry(Document doc, int id) {
         Scanner in = new Scanner(System.in);
         System.out.print("Введите континент: ");
         String continent = in.next();
@@ -21,6 +21,7 @@ public class Elements {
         String minerals = in.next();
 
         Element country = doc.createElement("country");
+        country.setAttribute("id",Integer.toString(id));
         country.appendChild(Elements.getCountryElement(doc,"continent",continent));
         country.appendChild(Elements.getCountryElement(doc,"name",name));
         country.appendChild(Elements.getCountryElement(doc,"area",area));
