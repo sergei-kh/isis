@@ -5,14 +5,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.Scanner;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -54,21 +49,22 @@ public class Parser {
             document.getDocumentElement().normalize();
             Element root = document.getDocumentElement();
             root.appendChild(Elements.getCountry(document, Sax.getNextId(xml)));
-            TransformerFactory transformerFactory = TransformerFactory.newInstance();
-            Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(document);
-            StreamResult file = new StreamResult(xml);
-            transformer.transform(source, file);
+            Convert.writeToFile(document,xml);
             System.out.println("Новая запись успешно создана");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public void editItemDocument() {
-
+    public void editItemDocument(int id) {
+        ArrayList<Country> countries = Sax.getData(xml);
+        for(Country country : countries) {
+            if(country.getId() == id) {
+                System.out.println(country.getName());
+            }
+        }
     }
 
-    public void routingCommands(byte cmd, byte min, byte max) {
+    public void routingCommands(byte cmd, byte min, byte max, int param) {
         if(cmd <= max && cmd >= min) {
             switch (cmd) {
                 case 0:
@@ -78,7 +74,7 @@ public class Parser {
                     addItemToDocument();
                     break;
                 case 2:
-                    editItemDocument();
+                    editItemDocument(param);
                     break;
             }
         } else {

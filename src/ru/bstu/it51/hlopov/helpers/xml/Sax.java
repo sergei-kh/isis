@@ -12,7 +12,11 @@ import java.util.ArrayList;
 import ru.bstu.it51.hlopov.Models.Country;
 
 public class Sax {
-
+    /**
+     * <p>Метод список объектов Country<p/>
+     * @param xml файл из которого парсим данные
+     * @return ArrayList<Country>
+     */
     public static ArrayList<Country> getData(File xml) {
         ArrayList<Country> countries = new ArrayList<Country>();
         try {

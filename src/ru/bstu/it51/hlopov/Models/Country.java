@@ -1,5 +1,7 @@
 package ru.bstu.it51.hlopov.Models;
 
+import java.util.Scanner;
+
 public class Country {
     public Country(int id) {
         this.id = id;
@@ -39,23 +41,15 @@ public class Country {
         this.minerals = minerals;
     }
 
-    public String getContinent() {
-        return this.continent;
-    }
+    public String getContinent() { return this.continent; }
 
-    public String getName() {
-        return this.name;
-    }
+    public String getName() { return this.name; }
 
     public int getArea() {
         return this.area;
     }
 
-    public int getPopulation() {
-        return this.population;
-    }
+    public int getPopulation() { return this.population; }
 
-    public String getMinerals() {
-        return this.minerals;
-    }
+    public String getMinerals() { return this.minerals; }
 }
