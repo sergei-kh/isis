@@ -2,7 +2,6 @@ package ru.bstu.it51.hlopov.helpers.xml;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -13,6 +12,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import ru.bstu.it51.hlopov.Models.Country;
+import ru.bstu.it51.hlopov.helpers.xml.Convert;
 
 public class Parser {
     protected File xml;
@@ -21,10 +21,9 @@ public class Parser {
     public Parser(String config) {
         try {
             prop = new Properties();
-            FileInputStream file = new FileInputStream("configLab5.properties");
-            prop.load(file);
+            prop.load(new FileInputStream(config));
             xml = new File(prop.getProperty("PATH_FILE_XML"));
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println("Файл не найден");
         }
     }
