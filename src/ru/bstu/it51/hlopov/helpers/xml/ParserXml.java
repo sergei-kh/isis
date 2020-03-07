@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.Properties;
 import ru.bstu.it51.hlopov.Models.Country;
 
-public class Parser {
+public class ParserXml {
     protected File xml;
     protected Properties prop;
 
-    public Parser(String config) {
+    public ParserXml(String config) {
         try {
             prop = new Properties();
             prop.load(new FileInputStream(config));
