@@ -7,10 +7,9 @@ import ru.bstu.it51.hlopov.Models.Country;
 import ru.bstu.it51.hlopov.helpers.xml.Convert;
 
 public class Elements {
-    public static Node getCountry(Document doc, int id) {
+    public static Node getCountry(Document doc, Country country) {
         Element countryEl = doc.createElement("country");
-        countryEl.setAttribute("id",Integer.toString(id));
-        Country country = Convert.fillObjectModel();
+        countryEl.setAttribute("id",Integer.toString(country.getId()));
         countryEl.appendChild(Elements.getCountryElement(doc,"continent",country.getContinent()));
         countryEl.appendChild(Elements.getCountryElement(doc,"name",country.getName()));
         countryEl.appendChild(Elements.getCountryElement(doc,"area",country.getStringArea()));

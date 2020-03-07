@@ -4,15 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Properties;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
 import ru.bstu.it51.hlopov.Models.Country;
-import ru.bstu.it51.hlopov.helpers.xml.Convert;
 
 public class Parser {
     protected File xml;
@@ -31,35 +23,65 @@ public class Parser {
     public void printAllDocument() {
         ArrayList<Country> countries = Sax.getData(xml);
         for(Country country : countries) {
-            System.out.printf("id: %d\n",country.getId());
-            System.out.printf("Континент: %s\n",country.getContinent());
-            System.out.printf("Название: %s\n",country.getName());
-            System.out.printf("Площадь: %d\n",country.getArea());
-            System.out.printf("Население: %d\n",country.getPopulation());
-            System.out.printf("Полезные ископаемые: %s\n\n",country.getMinerals());
+            Convert.printObjectModel(country);
         }
     }
 
     public void addItemToDocument() {
         try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document document = builder.parse(xml);
-            document.getDocumentElement().normalize();
-            Element root = document.getDocumentElement();
-            root.appendChild(Elements.getCountry(document, Sax.getNextId(xml)));
-            Convert.writeToFile(document,xml);
+            ArrayList<Country> countries = Sax.getData(xml);
+            Country country = Convert.fillObjectModel();
+            country.setId(countries.get(countries.size() - 1).getId());
+            countries.add(country);
+            Convert.writeToFile(Convert.modelsToDocument(countries),xml);
             System.out.println("Новая запись успешно создана");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public void editItemDocument(int id) {
         ArrayList<Country> countries = Sax.getData(xml);
+        boolean successFind = false;
         for(Country country : countries) {
             if(country.getId() == id) {
-                System.out.println(country.getName());
+                successFind = true;
+                System.out.println("Данные на текущий момент: ");
+                Convert.printObjectModel(country);
+                Convert.fillObjectModel(country);
             }
+        }
+        try {
+            if(successFind) {
+                Convert.writeToFile(Convert.modelsToDocument(countries),xml);
+                System.out.println("Редактирование выполнено");
+            } else {
+                System.out.println("Объект не найден");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void removeItemDocument(int id) {
+        ArrayList<Country> countries = Sax.getData(xml);
+        boolean successFind = false;
+        for(int i = 0; i < countries.size(); ++i) {
+            if(countries.get(i).getId() == id) {
+                successFind = true;
+                countries.remove(i);
+            }
+        }
+        try {
+            if(successFind) {
+                Convert.writeToFile(Convert.modelsToDocument(countries),xml);
+                System.out.println("Удаление выполнено успешно");
+            } else {
+                System.out.println("Объект не найден");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -74,6 +96,9 @@ public class Parser {
                     break;
                 case 2:
                     editItemDocument(param);
+                    break;
+                case 3:
+                    removeItemDocument(param);
                     break;
             }
         } else {
