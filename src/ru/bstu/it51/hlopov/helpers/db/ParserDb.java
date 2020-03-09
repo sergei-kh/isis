@@ -20,14 +20,8 @@ public class ParserDb {
         try {
             Statement statement = con.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM countries");
-            while (resultSet.next()) {
-                System.out.printf("id: %d\n",resultSet.getInt("attr_id"));
-                System.out.printf("Континент: %s\n",resultSet.getString("continent"));
-                System.out.printf("Название: %s\n",resultSet.getString("name"));
-                System.out.printf("Площадь: %d\n",resultSet.getInt("area"));
-                System.out.printf("Население: %d\n",resultSet.getInt("population"));
-                System.out.printf("Полезные ископаемые: %s\n\n",resultSet.getString("minerals"));
-            }
+            ResultDb.printAll(resultSet);
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -36,8 +30,8 @@ public class ParserDb {
     public void addItem() {
         Country country = Convert.fillObjectModel();
         try {
-            PreparedStatement statement = con.prepareStatement("insert into countries(continent," +
-                    "name,area,population,minerals,attr_id) values(?,?,?,?,?,?)");
+            PreparedStatement statement = con.prepareStatement("INSERT INTO countries(continent," +
+                    "name,area,population,minerals,attr_id) VALUES(?,?,?,?,?,?)");
             ResultSet resultSet = statement.executeQuery("SELECT * FROM `countries` ORDER BY `countries`.`attr_id` DESC");
             statement.setString(1,country.getContinent());
             statement.setString(2,country.getName());
@@ -46,6 +40,7 @@ public class ParserDb {
             statement.setString(5,country.getMinerals());
             statement.setInt(6,ResultDb.getMaxId(resultSet) + 1);
             statement.executeUpdate();
+            statement.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,7 +48,26 @@ public class ParserDb {
     }
 
     public void editItem(int id) {
-
+        try {
+            Statement statement = con.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM countries WHERE attr_id = "+id);
+            System.out.println("Данные на текущий момент: ");
+            ResultDb.printAll(resultSet);
+            Country country = Convert.fillObjectModel();
+            PreparedStatement preparedStatement = con.prepareStatement("UPDATE countries SET continent = ?, " +
+                    "name = ?, area = ?, population = ?, minerals = ? WHERE attr_id = ?");
+            preparedStatement.setString(1,country.getContinent());
+            preparedStatement.setString(2,country.getName());
+            preparedStatement.setInt(3,country.getArea());
+            preparedStatement.setInt(4,country.getPopulation());
+            preparedStatement.setString(5,country.getMinerals());
+            preparedStatement.setInt(6,id);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            System.out.println("Редактирование выполнено успешно");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void routingCommands(byte cmd, int param) {

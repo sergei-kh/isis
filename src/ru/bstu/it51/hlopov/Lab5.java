@@ -46,7 +46,7 @@ public class Lab5 {
                     if(cmd >= 2 && cmd <= 3) {
                         System.out.print("Введите ID записи: ");
                     }
-                    parserDb.routingCommands(cmd, id);
+                    parserDb.routingCommands(cmd, in.nextInt());
                 }
                 connect.close();
                 break;
