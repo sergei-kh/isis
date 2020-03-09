@@ -27,8 +27,7 @@ public class Lab5 {
             switch (format) {
                 case 1:
                     ParserXml parser = new ParserXml(prop);
-                    System.out.println("Просмотреть всё = 0; Добавление = 1; Редактирование = 2; Удаление = 3");
-                    System.out.println("Выход = -1");
+                    System.out.println("Просмотреть всё = 0; Добавление = 1; Редактирование = 2; Удаление = 3; Выход = -1");
                     while (cmd != -1) {
                         System.out.print(">> ");
                         cmd = in.nextByte();
@@ -41,8 +40,7 @@ public class Lab5 {
                     break;
                 case 2:
                     Connect connect = new Connect(prop);
-                    System.out.println("Просмотреть всё = 0; Добавление = 1; Редактирование = 2; Удаление = 3");
-                    System.out.println("Выход = -1");
+                    System.out.println("Просмотреть всё = 0; Добавление = 1; Редактирование = 2; Удаление = 3; Выход = -1");
                     while (cmd != -1) {
                         System.out.print(">> ");
                         cmd = in.nextByte();
@@ -54,7 +52,13 @@ public class Lab5 {
                     break;
                 case 3:
                     Connect connect2 = new Connect(prop);
-                    ConvertXmlDb.xmlToDB(connect2,new File(prop.getProperty("PATH_FILE_XML")));
+                    System.out.println("Конвертировать из xml в БД = 0; конвертировать из БД в xml = 1");
+                    byte tmp = in.nextByte();
+                    if(tmp == 0) {
+                        ConvertXmlDb.xmlToDB(connect2,new File(prop.getProperty("PATH_FILE_XML")));
+                    } else if(tmp == 1) {
+                        ConvertXmlDb.DbToXml(connect2,new File(prop.getProperty("PATH_FILE_XML")));
+                    }
                     connect2.close();
                     break;
             }
