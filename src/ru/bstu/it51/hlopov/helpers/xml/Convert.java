@@ -53,6 +53,11 @@ public class Convert {
         country.setMinerals(in.next());
         return country;
     }
+
+    /**
+     * <p>Метод считывает данные с консоли и записывает эти данные в объект Country<p/>
+     * @return Country
+     */
     public static Country fillObjectModel() {
         Country country = new Country();
         Scanner in = new Scanner(System.in);

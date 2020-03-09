@@ -8,12 +8,9 @@ import ru.bstu.it51.hlopov.Models.Country;
 
 public class ParserXml {
     protected File xml;
-    protected Properties prop;
 
-    public ParserXml(String config) {
+    public ParserXml(Properties prop) {
         try {
-            prop = new Properties();
-            prop.load(new FileInputStream(config));
             xml = new File(prop.getProperty("PATH_FILE_XML"));
         } catch (Exception e) {
             System.out.println("Файл не найден");
@@ -42,46 +39,33 @@ public class ParserXml {
 
     public void editItemDocument(int id) {
         ArrayList<Country> countries = Sax.getData(xml);
-        boolean successFind = false;
         for(Country country : countries) {
             if(country.getId() == id) {
-                successFind = true;
                 System.out.println("Данные на текущий момент: ");
                 Convert.printObjectModel(country);
                 Convert.fillObjectModel(country);
+                try {
+                    Convert.writeToFile(Convert.modelsToDocument(countries),xml);
+                    System.out.println("Редактирование выполнено");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        try {
-            if(successFind) {
-                Convert.writeToFile(Convert.modelsToDocument(countries),xml);
-                System.out.println("Редактирование выполнено");
-            } else {
-                System.out.println("Объект не найден");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
     public void removeItemDocument(int id) {
         ArrayList<Country> countries = Sax.getData(xml);
-        boolean successFind = false;
         for(int i = 0; i < countries.size(); ++i) {
             if(countries.get(i).getId() == id) {
-                successFind = true;
                 countries.remove(i);
+                try {
+                    Convert.writeToFile(Convert.modelsToDocument(countries),xml);
+                    System.out.println("Удаление выполнено успешно");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
-        try {
-            if(successFind) {
-                Convert.writeToFile(Convert.modelsToDocument(countries),xml);
-                System.out.println("Удаление выполнено успешно");
-            } else {
-                System.out.println("Объект не найден");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
