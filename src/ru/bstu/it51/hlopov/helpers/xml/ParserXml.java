@@ -1,7 +1,6 @@
 package ru.bstu.it51.hlopov.helpers.xml;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 import ru.bstu.it51.hlopov.Models.Country;
@@ -69,24 +68,20 @@ public class ParserXml {
         }
     }
 
-    public void routingCommands(byte cmd, byte min, byte max, int param) {
-        if(cmd <= max && cmd >= min) {
-            switch (cmd) {
-                case 0:
-                    printAllDocument();
-                    break;
-                case 1:
-                    addItemToDocument();
-                    break;
-                case 2:
-                    editItemDocument(param);
-                    break;
-                case 3:
-                    removeItemDocument(param);
-                    break;
-            }
-        } else {
-            System.out.println("Команда не определена");
+    public void routingCommands(byte cmd, int param) {
+        switch (cmd) {
+            case 0:
+                printAllDocument();
+                break;
+            case 1:
+                addItemToDocument();
+                break;
+            case 2:
+                editItemDocument(param);
+                break;
+            case 3:
+                removeItemDocument(param);
+                break;
         }
     }
 }

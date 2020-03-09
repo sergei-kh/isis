@@ -52,6 +52,7 @@ public class ConvertXmlDb {
                 country.setMinerals(resultSet.getString("minerals"));
                 countries.add(country);
             }
+            statement.close();
             Convert.writeToFile(Convert.modelsToDocument(countries),xml);
         } catch (Exception e) {
             e.printStackTrace();
