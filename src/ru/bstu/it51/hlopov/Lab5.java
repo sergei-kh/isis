@@ -6,6 +6,7 @@ import ru.bstu.it51.hlopov.helpers.xml.ParserXml;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -15,13 +16,12 @@ public class Lab5 {
     public void run() {
         Scanner in = new Scanner(System.in);
         try {
-            prop.load(new FileInputStream("configLab5.properties"));
+            prop.load(new InputStreamReader(new FileInputStream("configLab5.properties"),"UTF-8"));
         } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.print("Выберите формал представления (1 - XML, 2 - БД, 3 - Конвертировать): ");
         byte cmd = 0;
-        int id = 0;
         switch (in.nextByte()) {
             case 1:
                 ParserXml parser = new ParserXml(prop);
@@ -29,24 +29,17 @@ public class Lab5 {
                 while (cmd != -1) {
                     System.out.print(">> ");
                     cmd = in.nextByte();
-                    if(cmd >= 2 && cmd <= 3) {
-                        System.out.print("Введите ID записи: ");
-                        id = in.nextInt();
-                    }
-                    parser.routingCommands(cmd, id);
+                    parser.routingCommands(cmd, in);
                 }
                 break;
             case 2:
                 Connect connect = new Connect(prop);
-                System.out.println("Просмотреть всё = 0; Добавление = 1; Редактирование = 2; Удаление = 3; Выход = -1");
-                ParserDb parserDb = new ParserDb(connect.getConnect());
+                System.out.println("Просмотреть всё = 0; Добавление = 1; Редактирование = 2; Удаление = 3; Поиск максимума и минимума = 4; Поиск = 5; Выход = -1");
+                ParserDb parserDb = new ParserDb(connect.getConnect(),prop);
                 while (cmd != -1) {
                     System.out.print(">> ");
                     cmd = in.nextByte();
-                    if(cmd >= 2 && cmd <= 3) {
-                        System.out.print("Введите ID записи: ");
-                    }
-                    parserDb.routingCommands(cmd, in.nextInt());
+                    parserDb.routingCommands(cmd, in);
                 }
                 connect.close();
                 break;
@@ -55,7 +48,7 @@ public class Lab5 {
                 System.out.println("Конвертировать из xml в БД = 1; конвертировать из БД в xml = 2");
                 byte tmp = in.nextByte();
                 if(tmp == 1) {
-                    ConvertXmlDb.xmlToDB(connect2,new File(prop.getProperty("PATH_FILE_XML")));
+                    ConvertXmlDb.xmlToDb(connect2,new File(prop.getProperty("PATH_FILE_XML")));
                 } else if(tmp == 2) {
                     ConvertXmlDb.DbToXml(connect2,new File(prop.getProperty("PATH_FILE_XML")));
                 }

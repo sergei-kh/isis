@@ -8,11 +8,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Properties;
+import java.util.Scanner;
 
 public class ParserDb {
     protected Connection con;
+    protected Properties prop;
 
-    public ParserDb(Connection conNew) {
+    public ParserDb(Connection conNew, Properties properties) {
+        prop = properties;
         con = conNew;
     }
 
@@ -44,7 +48,6 @@ public class ParserDb {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public void editItem(int id) {
@@ -70,7 +73,57 @@ public class ParserDb {
         }
     }
 
-    public void routingCommands(byte cmd, int param) {
+    public void removeItem(int id) {
+        try {
+            Statement statement = con.createStatement();
+            int status = statement.executeUpdate("DELETE FROM countries WHERE attr_id = "+id);
+            if(status != 0) {
+                System.out.println(prop.getProperty("MESSAGE_SUCCESS_REMOVE"));
+            } else {
+                System.out.println(prop.getProperty("MESSAGE_FAIL_REMOVE"));
+            }
+            statement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void findMaxOrMin(byte direction, String nameField) {
+        try {
+            Statement statement = con.createStatement();
+            ResultSet resultSet;
+            if(direction == 0) {
+                resultSet = statement.executeQuery("SELECT * FROM countries WHERE "+nameField+" = (SELECT MAX("+nameField+") FROM countries)");
+            } else {
+                resultSet = statement.executeQuery("SELECT * FROM countries WHERE "+nameField+" = (SELECT MIN("+nameField+") FROM countries)");
+            }
+            ResultDb.printAll(resultSet);
+            statement.close();
+        } catch (Exception e) {
+            System.out.println("Ошибка в заполсе к базе данных, повторите попытку");
+        }
+    }
+
+    public void findToFields(String str, String fields) {
+        try {
+            String query = "SELECT * FROM countries WHERE ";
+            Statement statement = con.createStatement();
+            String[] names = fields.split(",");
+            for(int i = 0; i < names.length; ++i) {
+                if(i == 0) {
+                    query += names[i]+" LIKE '%"+str+"%'";
+                } else {
+                    query += " AND "+names[i]+" LIKE '%"+str+"%'";
+                }
+            }
+            ResultSet resultSet = statement.executeQuery(query);
+            ResultDb.printAll(resultSet);
+        } catch (Exception e) {
+            System.out.println("Ошибка в заполсе к базе данных, повторите попытку");
+        }
+    }
+
+    public void routingCommands(byte cmd, Scanner in) {
         switch (cmd) {
             case 0:
                 printAllItems();
@@ -79,7 +132,26 @@ public class ParserDb {
                 addItem();
                 break;
             case 2:
-                editItem(param);
+                System.out.print("Введите Id: ");
+                editItem(in.nextInt());
+                break;
+            case 3:
+                System.out.print("Введите Id: ");
+                removeItem(in.nextInt());
+                break;
+            case 4:
+                System.out.print("0 - Максимальное значение; 1 - Минимальное значение: ");
+                byte direction = in.nextByte();
+                System.out.print("Введите название поля: ");
+                String nameField = in.next();
+                findMaxOrMin(direction, nameField);
+                break;
+            case 5:
+                System.out.print("Введите поисковый запрос: ");
+                String query = in.next();
+                System.out.print("Введите поля по которым будет происходит поиск через запятую: ");
+                String fields = in.next();
+                findToFields(query, fields);
                 break;
         }
     }

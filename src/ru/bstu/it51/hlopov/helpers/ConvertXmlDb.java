@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class ConvertXmlDb {
 
-    public static void xmlToDB(Connect connect, File xml) {
+    public static void xmlToDb(Connect connect, File xml) {
         ArrayList<Country> countries = Sax.getData(xml);
         try {
             Statement statement = connect.getConnect().createStatement();
