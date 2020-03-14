@@ -25,7 +25,7 @@ public class Lab5 {
         switch (in.nextByte()) {
             case 1:
                 ParserXml parser = new ParserXml(prop);
-                System.out.println("Просмотреть всё = 0; Добавление = 1; Редактирование = 2; Удаление = 3; Выход = -1");
+                System.out.println("Просмотреть всё = 0; Добавление = 1; Редактирование = 2; Удаление = 3; Поиск максимума и минимума = 4; Поиск = 5; Выход = -1;");
                 while (cmd != -1) {
                     System.out.print(">> ");
                     cmd = in.nextByte();

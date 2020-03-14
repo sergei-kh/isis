@@ -13,7 +13,7 @@ import ru.bstu.it51.hlopov.Models.Country;
 
 public class Sax {
     /**
-     * <p>Метод список объектов Country<p/>
+     * <p>Метод возвращает список объектов Country<p/>
      * @param xml файл из которого парсим данные
      * @return ArrayList<Country>
      */

@@ -100,7 +100,7 @@ public class ParserDb {
             ResultDb.printAll(resultSet);
             statement.close();
         } catch (Exception e) {
-            System.out.println("Ошибка в заполсе к базе данных, повторите попытку");
+            System.out.println(prop.getProperty("MESSAGES_FAIL_QUERY_DB"));
         }
     }
 
@@ -119,7 +119,7 @@ public class ParserDb {
             ResultSet resultSet = statement.executeQuery(query);
             ResultDb.printAll(resultSet);
         } catch (Exception e) {
-            System.out.println("Ошибка в заполсе к базе данных, повторите попытку");
+            System.out.println(prop.getProperty("MESSAGES_FAIL_QUERY_DB"));
         }
     }
 
