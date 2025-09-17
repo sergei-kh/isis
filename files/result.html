@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Тестовый HTML с email'ами</title>
+    <style>
+        body { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; padding: 2rem; }
+        pre { background:#f5f5f5; padding:1rem; border-radius:6px; }
+        .emails { margin-top:1rem; }
+        button { padding: .4rem .8rem; border-radius:6px; }
+    </style>
+</head>
+<body>
+<h1>Лабораторный файл — примеры email</h1>
+
+<p>Некоторые email указаны как <code>mailto:</code>, некоторые — как обычный текст, в форме и в data-атрибутах.</p>
+
+<ul>
+    <li>Почта пользователя: <a href="mailto:user1@example.com">user1@example.com</a></li>
+    <li>Российский пример: ivan.petrov@example.ru</li>
+    <li>Университетская почта: <a href="mailto:maria.smith@university.edu">maria.smith@university.edu</a></li>
+    <li>Поддержка (с плюс-адресацией): support+lab1@service-example.com</li>
+    <li>Тест в поддомене: test.user-123@sub.domain.co.qwe</li>
+    <li>Системная: noreply@service.io</li>
+</ul>
+
+<h2>Форма (в value)</h2>
+<form id="contact">
+    <label>Имя: <input type="text" name="name" value="Иван"></label><br><br>
+    <label>Электронная почта: <input type="email" name="email" value="form.user@example.net"></label><br><br>
+    <button type="submit">Отправить</button>
+</form>
+
+<h2>Data-атрибут и комментарий</h2>
+<div id="meta" data-owner-email="owner-team@company-example.org">Метаданные проекта</div>
+
+<!-- Контакт на случай вопросов: qa.team@example.com -->
+
+<h2>Автопоиск email'ов на странице</h2>
+<p>Нажмите кнопку, чтобы скрипт нашёл все email'ы на странице и показал их в списке ниже.</p>
+<button id="find">Найти email'ы</button>
+<div class="emails">
+    <strong>Найденные email'ы:</strong>
+    <pre id="result">(ещё не запущено)</pre>
+</div>
+
+<script>
+    function findEmails(text) {
+        // Небольшая простая регулярка для демонстрации — покрывает обычные случаи
+        const re = /[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g;
+        const matches = text.match(re) || [];
+        // Уникализируем
+        return Array.from(new Set(matches));
+    }
+
+    document.getElementById('find').addEventListener('click', () => {
+        const bodyText = document.body.innerText + '\n' + document.body.getAttribute('data-owner-email');
+        const found = findEmails(bodyText + '\n' + document.getElementById('meta').dataset.ownerEmail);
+        document.getElementById('result').textContent = found.length ? found.join('\n') : '(не найдено)';
+    });
+
+    // Также автоматически покажем список при загрузке (чтобы в лабораторной можно было сразу видеть)
+    window.addEventListener('load', () => document.getElementById('find').click());
+</script>
+</body>
+</html>

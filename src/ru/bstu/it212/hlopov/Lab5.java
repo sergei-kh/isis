@@ -7,6 +7,7 @@ import ru.bstu.it212.hlopov.helpers.xml.ParserXml;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class Lab5 {
     public void run() {
         Scanner in = new Scanner(System.in);
         try {
-            prop.load(new InputStreamReader(new FileInputStream("configLab5.properties"),"UTF-8"));
+            prop.load(new InputStreamReader(new FileInputStream("configLab5.properties"), StandardCharsets.UTF_8));
         } catch (Exception e) {
             e.printStackTrace();
         }

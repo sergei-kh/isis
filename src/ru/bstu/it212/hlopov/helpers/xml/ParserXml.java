@@ -20,7 +20,7 @@ public class ParserXml {
 
     public void printAllDocument() {
         ArrayList<Country> countries = Sax.getData(xml);
-        for(Country country : countries) {
+        for (Country country : countries) {
             Convert.printObjectModel(country);
         }
     }
@@ -31,7 +31,7 @@ public class ParserXml {
             Country country = Convert.fillObjectModel();
             country.setId(countries.get(countries.size() - 1).getId());
             countries.add(country);
-            Convert.writeToFile(Convert.modelsToDocument(countries),xml);
+            Convert.writeToFile(Convert.modelsToDocument(countries), xml);
             System.out.println("Новая запись успешно создана");
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,13 +40,13 @@ public class ParserXml {
 
     public void editItemDocument(int id) {
         ArrayList<Country> countries = Sax.getData(xml);
-        for(Country country : countries) {
-            if(country.getId() == id) {
+        for (Country country : countries) {
+            if (country.getId() == id) {
                 System.out.println("Данные на текущий момент: ");
                 Convert.printObjectModel(country);
                 Convert.fillObjectModel(country);
                 try {
-                    Convert.writeToFile(Convert.modelsToDocument(countries),xml);
+                    Convert.writeToFile(Convert.modelsToDocument(countries), xml);
                     System.out.println("Редактирование выполнено");
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -58,18 +58,18 @@ public class ParserXml {
     public void removeItemDocument(int id) {
         ArrayList<Country> countries = Sax.getData(xml);
         boolean status = false;
-        for(int i = 0; i < countries.size(); ++i) {
-            if(countries.get(i).getId() == id) {
+        for (int i = 0; i < countries.size(); ++i) {
+            if (countries.get(i).getId() == id) {
                 countries.remove(i);
                 status = true;
                 try {
-                    Convert.writeToFile(Convert.modelsToDocument(countries),xml);
+                    Convert.writeToFile(Convert.modelsToDocument(countries), xml);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
-        if(status) {
+        if (status) {
             System.out.println(prop.getProperty("MESSAGE_SUCCESS_REMOVE"));
         } else {
             System.out.println(prop.getProperty("MESSAGE_FAIL_REMOVE"));
@@ -79,14 +79,14 @@ public class ParserXml {
     public void findMaxOrMin(byte direction, byte typeField) {
         ArrayList<Country> countries = Sax.getData(xml);
         Country country;
-        if(direction == 0) {
-            if(typeField == 0) {
+        if (direction == 0) {
+            if (typeField == 0) {
                 country = countries.stream().max(Comparator.comparing(Country::getArea)).get();
             } else {
                 country = countries.stream().max(Comparator.comparing(Country::getPopulation)).get();
             }
         } else {
-            if(typeField == 0) {
+            if (typeField == 0) {
                 country = countries.stream().min(Comparator.comparing(Country::getArea)).get();
             } else {
                 country = countries.stream().min(Comparator.comparing(Country::getPopulation)).get();
@@ -100,8 +100,8 @@ public class ParserXml {
         HashMap<Integer, Integer> resultIds = new HashMap<Integer, Integer>();
         ArrayList<Country> countries = Sax.getData(xml);
         String[] fieldsArr = fields.split(",");
-        for(String name : fieldsArr) {
-            for(Country country : countries) {
+        for (String name : fieldsArr) {
+            for (Country country : countries) {
                 switch (name) {
                     case "continent":
                         if (country.getContinent().contains(str)) {
@@ -127,11 +127,9 @@ public class ParserXml {
             resultIds.put(i, count == null ? 1 : count + 1);
         }
         for (Map.Entry<Integer, Integer> entry : resultIds.entrySet()) {
-            if(entry.getValue() == fieldsArr.length) {
-                for(Country country : countries) {
-                    if(country.getId() == entry.getKey()) {
-                        Convert.printObjectModel(country);
-                    }
+            for (Country country : countries) {
+                if (country.getId() == entry.getKey()) {
+                    Convert.printObjectModel(country);
                 }
             }
         }

@@ -9,7 +9,7 @@ public class Connect {
 
     public Connect(Properties prop) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(prop.getProperty("URL_CONNECTION"),
                     prop.getProperty("USER_DATABASE"), prop.getProperty("PASSWORD_DATABASE"));
         } catch (Exception e) {

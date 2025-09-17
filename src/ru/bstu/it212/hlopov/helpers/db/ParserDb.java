@@ -112,7 +112,7 @@ public class ParserDb {
                 if(i == 0) {
                     query += names[i]+" LIKE '%"+str+"%'";
                 } else {
-                    query += " AND "+names[i]+" LIKE '%"+str+"%'";
+                    query += " OR "+names[i]+" LIKE '%"+str+"%'";
                 }
             }
             ResultSet resultSet = statement.executeQuery(query);
