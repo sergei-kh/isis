@@ -54,7 +54,7 @@ public class Lab1 {
             a = in.nextFloat();
             System.out.print("B = ");
             b = in.nextFloat();
-            System.out.println("Введите (X, Y, Z) керпича");
+            System.out.println("Введите (X, Y, Z) кирпича");
             System.out.print("X = ");
             x = in.nextFloat();
             System.out.print("Y = ");
@@ -89,10 +89,10 @@ public class Lab1 {
         if (x != 0 && y != 0 && z != 0) {
             if (!fileNotFound) {
                 if (this.log != null) {
-                    this.log.printf(Level.DEBUG, "Размеры отверсия (A и B) %f, %f", a, b);
-                    this.log.printf(Level.DEBUG, "Размеры керпича (X, Y, Z) %f, %f, %f", x, y, z);
+                    this.log.printf(Level.DEBUG, "Размеры отверстия (A и B) %f, %f", a, b);
+                    this.log.printf(Level.DEBUG, "Размеры кирпича (X, Y, Z) %f, %f, %f", x, y, z);
                 } else {
-                    System.out.printf("Размеры отверсия (A и B) %f, %f\n", a, b);
+                    System.out.printf("Размеры отверстия (A и B) %f, %f\n", a, b);
                     System.out.printf("Размеры кирпича (X, Y, Z) %f, %f, %f\n", x, y, z);
                 }
                 if (b >= y && a >= z || b >= z && a >= y || b >= x && a >= y || b >= y && a >= x
