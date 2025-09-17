@@ -23,7 +23,7 @@
     </Appenders>
     <!-- Секция логгеров -->
     <Loggers>
-        <Logger name="ru.bstu.it51.hlopov.Lab2" level="debug"/>
+        <Logger name="ru.bstu.it212.hlopov.Lab2" level="debug"/>
         <Root level="all">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="file" level="debug"/>
