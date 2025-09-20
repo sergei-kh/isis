@@ -91,7 +91,7 @@ public class Lab1 {
             } catch (IOException ex) {
                 if (this.log != null) {
                     fileNotFound = true;
-                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (первое задание)");
+                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (первое задание)", ex);
                 }
             }
         }
@@ -162,7 +162,7 @@ public class Lab1 {
                 }
             } catch (IOException ex) {
                 if (this.log != null) {
-                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (второе задание)");
+                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (второе задание)", ex);
                 }
             }
         }
@@ -215,7 +215,7 @@ public class Lab1 {
                 }
             } catch (IOException ex) {
                 if (this.log != null) {
-                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (третье задание)");
+                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (третье задание)", ex);
                 }
             }
         }
@@ -294,7 +294,7 @@ public class Lab1 {
                 }
             } catch (IOException ex) {
                 if (this.log != null) {
-                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (четвертое задание)");
+                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (четвертое задание)", ex);
                 }
             }
         }
