@@ -62,7 +62,11 @@ public class Lab1 {
             System.out.print("Z = ");
             z = in.nextFloat();
         } else {
-            try (BufferedReader reader = new BufferedReader(new FileReader("files/z1.txt"))) {
+            File file = new File("files/z1.txt");
+            if (file.length() == 0 && this.log != null) {
+                this.log.error("Файл с параметрами пуст (первое задание)");
+            }
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
                 byte lineCount = 0;
                 while ((line = reader.readLine()) != null) {
@@ -82,7 +86,7 @@ public class Lab1 {
             } catch (IOException ex) {
                 if (this.log != null) {
                     fileNotFound = true;
-                    this.log.fatal("Не удалось найти файл с первым заданием", ex);
+                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (первое задание)", ex);
                 }
             }
         }
@@ -116,7 +120,7 @@ public class Lab1 {
                 }
             }
         } else if (this.log != null) {
-            this.log.warn("Внимание размеры кирпича были равны нулю");
+            this.log.warn("Внимание размеры кирпича были равны нулю или не заданы");
         }
     }
 
@@ -138,14 +142,18 @@ public class Lab1 {
                 this.log.printf(Level.DEBUG, "Номер месяца: %d", numberMonth);
             }
         } else {
-            try (BufferedReader reader = new BufferedReader(new FileReader("files/z2.txt"))) {
+            File file = new File("files/z2.txt");
+            if (file.length() == 0 && this.log != null) {
+                this.log.error("Файл с параметрами пуст (второе задание)");
+            }
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     numberMonth = Byte.parseByte(line);
                 }
             } catch (IOException ex) {
                 if (this.log != null) {
-                    this.log.fatal("Не удалось найти файл с вторым заданием", ex);
+                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (второе задание)", ex);
                 }
             }
         }
@@ -183,14 +191,18 @@ public class Lab1 {
                 this.log.printf(Level.DEBUG, "Размер таблицы: %d", n);
             }
         } else {
-            try (BufferedReader reader = new BufferedReader(new FileReader("files/z3.txt"))) {
+            File file = new File("files/z3.txt");
+            if (file.length() == 0 && this.log != null) {
+                this.log.error("Файл с параметрами пуст (третье задание)");
+            }
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     n = Integer.parseInt(line);
                 }
             } catch (IOException ex) {
                 if (this.log != null) {
-                    this.log.fatal("Не удалось найти файл с третьем заданием", ex);
+                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (третье задание)");
                 }
             }
         }
@@ -242,7 +254,11 @@ public class Lab1 {
                 System.out.printf("Размер массива: %d", n);
             }
         } else {
-            try (BufferedReader reader = new BufferedReader(new FileReader("files/z4.txt"))) {
+            File file = new File("files/z4.txt");
+            if (file.length() == 0 && this.log != null) {
+                this.log.error("Файл с параметрами пуст (четвертое задание)");
+            }
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
                 String[] tmpArray = new String[1];
                 while ((line = reader.readLine()) != null) {
@@ -260,7 +276,7 @@ public class Lab1 {
                 }
             } catch (IOException ex) {
                 if (this.log != null) {
-                    this.log.fatal("Не удалось найти файл с четвёртым заданием", ex);
+                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (четвертое задание)");
                 }
             }
         }
