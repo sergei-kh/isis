@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Email {
     public static ArrayList<String> findEmailFromText(ArrayList<String> text) {
-        String regex = "([a-zа-яё0-9._-]+)(@{1})([a-zа-яё0-9._-]+)\\.([a-zа-я]{2,3})";
+        String regex = "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}";
         ArrayList<String> items = new ArrayList<String>();
         Pattern pattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
         for(String line : text) {
