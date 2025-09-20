@@ -1,9 +1,9 @@
 qa.team@example.com
 form.user@example.net
-lab1@service-example.com
 ivan.petrov@example.ru
 noreply@service.io
 maria.smith@university.edu
 test.user-123@sub.domain.co.qwe
+support+lab1@service-example.com
 owner-team@company-example.org
 user1@example.com
