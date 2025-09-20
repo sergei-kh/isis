@@ -11,25 +11,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Lab3 {
+
     protected ArrayList<Human> Humans = new ArrayList<Human>();
+
     public void run() {
         byte typePerson = -1;
         Scanner in = new Scanner(System.in);
         System.out.print("Введите кол-во человек: ");
-        System.out.printf("Кол-во человек: %d\n",this.getCountHumansFormStr(in.next()));
+        System.out.printf("Кол-во человек: %d\n", this.getCountHumansFormStr(in.next()));
         while (typePerson != 0) {
             System.out.print("Тип персоны: (0 - выход; 1 - школьник; 2 - студент; 3 - преподаватель; 4 - директор): ");
             typePerson = in.nextByte();
             this.addPerson(typePerson, in);
         }
-        var human = this.Humans.stream().min(Comparator.comparing(Human::getAge)).get();
+        Human human = this.Humans.stream().min(Comparator.comparing(Human::getAge)).get();
         System.out.print(human.toString());
     }
 
     private int getCountHumansFormStr(String str) {
         Pattern p = Pattern.compile("(\\d+)");
         Matcher m = p.matcher(str);
-        while(m.find()) {
+        while (m.find()) {
             return Integer.parseInt(m.group(1));
         }
         return 0;
@@ -37,7 +39,7 @@ public class Lab3 {
 
     private void addPerson(byte typePerson, Scanner in) {
         switch (typePerson) {
-            case  1:
+            case 1:
                 Schoolboy schoolboy = new Schoolboy(in);
                 schoolboy.init(in);
                 this.Humans.add(schoolboy);
