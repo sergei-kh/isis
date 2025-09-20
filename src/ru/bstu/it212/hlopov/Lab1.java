@@ -86,7 +86,7 @@ public class Lab1 {
             } catch (IOException ex) {
                 if (this.log != null) {
                     fileNotFound = true;
-                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (первое задание)", ex);
+                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (первое задание)");
                 }
             }
         }
@@ -153,7 +153,7 @@ public class Lab1 {
                 }
             } catch (IOException ex) {
                 if (this.log != null) {
-                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (второе задание)", ex);
+                    this.log.fatal("Упс.. Не удалось найти файл с параметрами (второе задание)");
                 }
             }
         }
