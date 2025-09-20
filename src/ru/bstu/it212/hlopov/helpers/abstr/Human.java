@@ -20,14 +20,7 @@ public abstract class Human {
         return this.age + " " + this.name;
     }
 
-    public int getAge() { return this.age; }
-
-    public static int getCountHumansFormStr(String str) {
-        Pattern p = Pattern.compile("(\\d+)");
-        Matcher m = p.matcher(str);
-        while(m.find()) {
-            return Integer.parseInt(m.group(1));
-        }
-        return 0;
+    public int getAge() {
+        return this.age;
     }
 }

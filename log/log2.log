@@ -1,0 +1,20 @@
+FATAL 20.09.2025 16:30:46 (Lab1) - Упс.. Не удалось найти файл с параметрами (первое задание)
+java.io.FileNotFoundException: files\z1.txt (Не удается найти указанный файл)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:185)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:139)
+	at java.base/java.io.FileReader.<init>(FileReader.java:75)
+	at ru.bstu.it212.hlopov.Lab1.fetchFile(Lab1.java:309)
+	at ru.bstu.it212.hlopov.Lab1.isBrickSuitable(Lab1.java:66)
+	at ru.bstu.it212.hlopov.Lab1.run(Lab1.java:29)
+	at ru.bstu.it212.hlopov.Lab2.run(Lab2.java:8)
+	at ru.bstu.it212.hlopov.app.main(app.java:20)
+WARN 20.09.2025 16:30:46 (Lab1) - Внимание размеры кирпича были равны нулю или не заданы
+ERROR 20.09.2025 16:30:56 (Lab1) - Ошибка при обработке файла
+ru.bstu.it212.hlopov.exceptions.FileEmptyException: Файл с параметрами пуст
+	at ru.bstu.it212.hlopov.Lab1.fetchFile(Lab1.java:304)
+	at ru.bstu.it212.hlopov.Lab1.showNameMonth(Lab1.java:142)
+	at ru.bstu.it212.hlopov.Lab1.run(Lab1.java:30)
+	at ru.bstu.it212.hlopov.Lab2.run(Lab2.java:8)
+	at ru.bstu.it212.hlopov.app.main(app.java:20)
+WARN 20.09.2025 16:30:56 (Lab1) - Внимание не известный номер месяца

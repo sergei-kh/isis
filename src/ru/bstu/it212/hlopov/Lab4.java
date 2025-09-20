@@ -20,7 +20,7 @@ public class Lab4 {
         } catch (IOException ex) {
             System.out.println("Не могу открыть файл");
         }
-        if(content.size() > 0) {
+        if(!content.isEmpty()) {
             ArrayList<String> result;
             result = Email.findEmailFromText(content);
             System.out.printf("Найдено уникальных e-mail адресов: %d\n",result.size());
