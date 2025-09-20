@@ -82,7 +82,7 @@ public class Lab1 {
             } catch (IOException ex) {
                 if (this.log != null) {
                     fileNotFound = true;
-                    this.log.error("File not found", ex);
+                    this.log.fatal("Не удалось найти файл с первым заданием", ex);
                 }
             }
         }
@@ -145,7 +145,7 @@ public class Lab1 {
                 }
             } catch (IOException ex) {
                 if (this.log != null) {
-                    this.log.error("File not found", ex);
+                    this.log.fatal("Не удалось найти файл с вторым заданием", ex);
                 }
             }
         }
@@ -190,7 +190,7 @@ public class Lab1 {
                 }
             } catch (IOException ex) {
                 if (this.log != null) {
-                    this.log.error("File not found", ex);
+                    this.log.fatal("Не удалось найти файл с третьем заданием", ex);
                 }
             }
         }
@@ -260,7 +260,7 @@ public class Lab1 {
                 }
             } catch (IOException ex) {
                 if (this.log != null) {
-                    this.log.error("File not found", ex);
+                    this.log.fatal("Не удалось найти файл с четвёртым заданием", ex);
                 }
             }
         }

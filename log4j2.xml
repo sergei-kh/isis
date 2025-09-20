@@ -17,7 +17,7 @@
         <!-- Файловый аппендер -->
         <File name="file2" fileName="log/log2.log">
             <PatternLayout>
-                    <Pattern>%p %d{d.MM.y} %d{HH:mm:ss} (%C{1}) - %m%n</Pattern>
+                <Pattern>%p %d{d.MM.y} %d{HH:mm:ss} (%C{1}) - %m%n</Pattern>
             </PatternLayout>
         </File>
     </Appenders>
