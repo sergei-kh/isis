@@ -63,15 +63,7 @@ public class Lab1 {
             System.out.print("Z = ");
             z = in.nextFloat();
         } else {
-            File file = new File("files/z1.txt");
-            try {
-                if (file.length() == 0 && this.log != null) {
-                    throw new FileEmptyException("Файл с параметрами пуст (первое задание)");
-                }
-            } catch (FileEmptyException e) {
-                this.log.error("Ошибка при обработке файла", e);
-            }
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            try (BufferedReader reader = fetchFile("files/z1.txt")) {
                 String line;
                 byte lineCount = 0;
                 while ((line = reader.readLine()) != null) {
@@ -147,15 +139,7 @@ public class Lab1 {
                 this.log.printf(Level.DEBUG, "Номер месяца: %d", numberMonth);
             }
         } else {
-            File file = new File("files/z2.txt");
-            try {
-                if (file.length() == 0 && this.log != null) {
-                    throw new FileEmptyException("Файл с параметрами пуст (второе задание");
-                }
-            } catch (FileEmptyException e) {
-                this.log.error("Ошибка при обработке файла", e);
-            }
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            try (BufferedReader reader = fetchFile("files/z2.txt")) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     numberMonth = Byte.parseByte(line);
@@ -200,15 +184,7 @@ public class Lab1 {
                 this.log.printf(Level.DEBUG, "Размер таблицы: %d", n);
             }
         } else {
-            File file = new File("files/z3.txt");
-            try {
-                if (file.length() == 0 && this.log != null) {
-                    throw new FileEmptyException("Файл с параметрами пуст (третье задание)");
-                }
-            } catch (FileEmptyException e) {
-                this.log.error("Ошибка при обработке файла", e);
-            }
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            try (BufferedReader reader = fetchFile("files/z3.txt")) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     n = Integer.parseInt(line);
@@ -267,16 +243,7 @@ public class Lab1 {
                 System.out.printf("Размер массива: %d", n);
             }
         } else {
-            File file = new File("files/z4.txt");
-            try {
-                if (file.length() == 0 && this.log != null) {
-                    throw new FileEmptyException("Файл с параметрами пуст (четвертое задание)");
-                }
-            } catch (FileEmptyException e) {
-                this.log.error("Ошибка при обработке файла", e);
-            }
-
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            try (BufferedReader reader = fetchFile("files/z4.txt")) {
                 String line;
                 String[] tmpArray = new String[1];
                 while ((line = reader.readLine()) != null) {
@@ -318,5 +285,27 @@ public class Lab1 {
             System.out.printf("Нулевых элементов в массиве: %d\n", countNull);
             System.out.println("Задача - 'массив' выполнена!");
         }
+    }
+
+    /**
+     * Получает данные из файла с параметрами
+     *
+     * <p>Данный метод открывает файл по указанному пути и возвращает поток для чтения его содержимого.
+     * Если файл пустой, логируется ошибка. Если файл не найден — выбрасывается исключение.</p>
+     *
+     * @param path путь до файла
+     * @return {@link BufferedReader} для чтения содержимого файла
+     * @throws FileNotFoundException если файл не найден
+     */
+    private BufferedReader fetchFile(String path) throws FileNotFoundException {
+        File file = new File(path);
+        try {
+            if (file.exists() && file.length() == 0 && this.log != null) {
+                throw new FileEmptyException("Файл с параметрами пуст");
+            }
+        } catch (FileEmptyException e) {
+            this.log.error("Ошибка при обработке файла", e);
+        }
+        return new BufferedReader(new FileReader(file));
     }
 }
