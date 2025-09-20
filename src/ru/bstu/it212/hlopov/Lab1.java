@@ -6,6 +6,7 @@ import java.io.*;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;
+import ru.bstu.it212.hlopov.exceptions.FileEmptyException;
 import ru.bstu.it212.hlopov.helpers.Input;
 import ru.bstu.it212.hlopov.helpers.Date;
 import ru.bstu.it212.hlopov.helpers.Table;
@@ -63,8 +64,12 @@ public class Lab1 {
             z = in.nextFloat();
         } else {
             File file = new File("files/z1.txt");
-            if (file.length() == 0 && this.log != null) {
-                this.log.error("Файл с параметрами пуст (первое задание)");
+            try {
+                if (file.length() == 0 && this.log != null) {
+                    throw new FileEmptyException("Файл с параметрами пуст (первое задание)");
+                }
+            } catch (FileEmptyException e) {
+                this.log.error("Ошибка при обработке файла", e);
             }
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
@@ -143,8 +148,12 @@ public class Lab1 {
             }
         } else {
             File file = new File("files/z2.txt");
-            if (file.length() == 0 && this.log != null) {
-                this.log.error("Файл с параметрами пуст (второе задание)");
+            try {
+                if (file.length() == 0 && this.log != null) {
+                    throw new FileEmptyException("Файл с параметрами пуст (второе задание");
+                }
+            } catch (FileEmptyException e) {
+                this.log.error("Ошибка при обработке файла", e);
             }
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
@@ -192,8 +201,12 @@ public class Lab1 {
             }
         } else {
             File file = new File("files/z3.txt");
-            if (file.length() == 0 && this.log != null) {
-                this.log.error("Файл с параметрами пуст (третье задание)");
+            try {
+                if (file.length() == 0 && this.log != null) {
+                    throw new FileEmptyException("Файл с параметрами пуст (третье задание)");
+                }
+            } catch (FileEmptyException e) {
+                this.log.error("Ошибка при обработке файла", e);
             }
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
@@ -255,9 +268,14 @@ public class Lab1 {
             }
         } else {
             File file = new File("files/z4.txt");
-            if (file.length() == 0 && this.log != null) {
-                this.log.error("Файл с параметрами пуст (четвертое задание)");
+            try {
+                if (file.length() == 0 && this.log != null) {
+                    throw new FileEmptyException("Файл с параметрами пуст (четвертое задание)");
+                }
+            } catch (FileEmptyException e) {
+                this.log.error("Ошибка при обработке файла", e);
             }
+
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
                 String[] tmpArray = new String[1];
